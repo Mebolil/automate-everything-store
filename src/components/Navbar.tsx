@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, LogOut, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const links = [
     { label: "Hizmetler", href: "#services" },
@@ -38,10 +40,27 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm">
-            Giriş Yap
-          </Button>
-          <Button size="sm">Ücretsiz Başla</Button>
+          {user ? (
+            <>
+              <span className="text-sm text-muted-foreground flex items-center gap-1.5">
+                <User className="w-4 h-4" />
+                {user.user_metadata?.full_name || user.email}
+              </span>
+              <Button variant="ghost" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4 mr-1" />
+                Çıkış
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" asChild>
+                <a href="/auth">Giriş Yap</a>
+              </Button>
+              <Button size="sm" asChild>
+                <a href="/auth">Ücretsiz Başla</a>
+              </Button>
+            </>
+          )}
         </div>
 
         <button
@@ -72,8 +91,21 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <Button variant="ghost" size="sm">Giriş Yap</Button>
-                <Button size="sm">Ücretsiz Başla</Button>
+                {user ? (
+                  <Button variant="ghost" size="sm" onClick={signOut}>
+                    <LogOut className="w-4 h-4 mr-1" />
+                    Çıkış Yap
+                  </Button>
+                ) : (
+                  <>
+                    <Button variant="ghost" size="sm" asChild>
+                      <a href="/auth">Giriş Yap</a>
+                    </Button>
+                    <Button size="sm" asChild>
+                      <a href="/auth">Ücretsiz Başla</a>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
