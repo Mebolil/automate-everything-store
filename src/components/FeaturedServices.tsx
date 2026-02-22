@@ -2,65 +2,47 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
-const services = [
-  {
-    title: "E-posta Pazarlama Otomasyonu",
-    description: "Otomatik mail dizileri, segmentasyon ve A/B testleri ile dönüşüm oranınızı artırın.",
-    price: "₺299",
-    period: "/ay",
-    type: "SaaS",
-    features: ["Sınırsız mail gönderimi", "Drag & drop editör", "Gelişmiş analitik", "API entegrasyonu"],
-    popular: true,
-  },
-  {
-    title: "Sosyal Medya Planlayıcı",
-    description: "Tüm platformlarda içeriklerinizi otomatik planlayın ve yayınlayın.",
-    price: "₺199",
-    period: "/ay",
-    type: "SaaS",
-    features: ["5 sosyal medya hesabı", "İçerik takvimi", "Otomatik paylaşım", "Performans raporu"],
-    popular: false,
-  },
-  {
-    title: "WhatsApp Bot Kurulumu",
-    description: "Müşterilerinize 7/24 otomatik yanıt veren WhatsApp botu kurulumu.",
-    price: "₺1.499",
-    period: "",
-    type: "Tek Seferlik",
-    features: ["Bot tasarımı & kurulum", "50 otomatik yanıt senaryosu", "CRM entegrasyonu", "1 ay destek"],
-    popular: false,
-  },
-  {
-    title: "CRM Otomasyon Paketi",
-    description: "Müşteri ilişkilerinizi otomatikleştirin. Lead takibi, pipeline yönetimi.",
-    price: "₺449",
-    period: "/ay",
-    type: "SaaS",
-    features: ["Sınırsız lead", "Otomatik takip maili", "Pipeline otomasyonu", "Webhook desteği"],
-    popular: false,
-  },
-  {
-    title: "Fatura & Muhasebe Botu",
-    description: "Faturaları otomatik oluşturun, gönderin ve tahsilat takibi yapın.",
-    price: "₺2.999",
-    period: "",
-    type: "Tek Seferlik",
-    features: ["e-Fatura entegrasyonu", "Otomatik hatırlatma", "Raporlama dashboard", "ERP bağlantısı"],
-    popular: false,
-  },
-  {
-    title: "Veri Yedekleme Otomasyonu",
-    description: "Verilerinizi otomatik olarak yedekleyin, güvenli cloud'a aktarın.",
-    price: "₺149",
-    period: "/ay",
-    type: "SaaS",
-    features: ["Günlük yedekleme", "3 farklı lokasyon", "Şifreli depolama", "Anlık bildirimler"],
-    popular: false,
-  },
-];
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  period: string;
+  type: string;
+  features: string[];
+  popular: boolean;
+}
 
 const FeaturedServices = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const { data } = await supabase
+        .from("services")
+        .select("id, title, description, price, period, type, features, popular")
+        .eq("active", true)
+        .order("popular", { ascending: false });
+      if (data) setServices(data);
+      setLoading(false);
+    };
+    fetchServices();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="pricing" className="py-20 md:py-28 bg-muted/30">
+        <div className="container mx-auto px-4 flex justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="pricing" className="py-20 md:py-28 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -76,7 +58,7 @@ const FeaturedServices = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <motion.div
-              key={service.title}
+              key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -118,7 +100,9 @@ const FeaturedServices = () => {
                 </p>
 
                 <div className="mb-5">
-                  <span className="font-display text-3xl font-bold">{service.price}</span>
+                  <span className="font-display text-3xl font-bold">
+                    ₺{service.price.toLocaleString("tr-TR")}
+                  </span>
                   <span className="text-muted-foreground text-sm">{service.period}</span>
                 </div>
 
