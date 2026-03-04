@@ -12,7 +12,7 @@ const AdminLayout = () => {
           <main className="flex-1 flex flex-col">
             <header className="h-14 border-b border-border flex items-center px-4 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
               <SidebarTrigger className="mr-4" />
-              <h1 className="font-display font-semibold text-lg">AutoMarket Admin</h1>
+              <h1 className="font-display font-semibold text-lg">Otomasyon Çözüm Admin</h1>
             </header>
             <div className="flex-1 p-6">
               <Outlet />
