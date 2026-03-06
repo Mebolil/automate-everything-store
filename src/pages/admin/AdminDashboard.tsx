@@ -123,7 +123,7 @@ const AdminDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-display font-bold">
-              ₺{stats.avgPrice.toLocaleString("tr-TR")}
+              ${stats.avgPrice}
             </div>
             <p className="text-xs text-muted-foreground mt-1">Tüm hizmetlerin ortalaması</p>
           </CardContent>
@@ -137,7 +137,7 @@ const AdminDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-display font-bold">
-              ₺{stats.totalRevenuePotential.toLocaleString("tr-TR")}
+              ${stats.totalRevenuePotential}
             </div>
             <p className="text-xs text-muted-foreground mt-1">Tüm aktif hizmetlerin toplam değeri</p>
           </CardContent>
@@ -178,7 +178,7 @@ const AdminDashboard = () => {
                       borderRadius: "var(--radius)",
                       fontSize: 12,
                     }}
-                    formatter={(value: number) => [`₺${value.toLocaleString("tr-TR")}`, "Fiyat"]}
+                    formatter={(value: number) => [`$${value}`, "Fiyat"]}
                   />
                   <Bar dataKey="fiyat" fill="hsl(var(--primary))" radius={[6, 6, 0, 0]} />
                 </BarChart>
@@ -285,7 +285,7 @@ const AdminDashboard = () => {
                       {service.type}
                     </Badge>
                     <span className="font-display font-semibold text-sm whitespace-nowrap">
-                      ₺{service.price.toLocaleString("tr-TR")}
+                      ${service.price}
                     </span>
                   </div>
                 </div>

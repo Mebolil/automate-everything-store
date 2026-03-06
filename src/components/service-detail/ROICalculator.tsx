@@ -56,10 +56,10 @@ const ROICalculator = ({ roiData, price }: ROICalculatorProps) => {
       yearly_saving: Math.round(15000 * 12 - price),
     };
     metrics = [
-      { icon: "DollarSign", label: "Asistan Maliyeti (Aylık)", value: `₺${legacy.assistant_cost.toLocaleString("tr-TR")}`, sub: "Bu işi bir çalışana yaptırsanız" },
-      { icon: "Clock", label: "Otomasyon Maliyeti", value: `₺${legacy.automation_cost.toLocaleString("tr-TR")}`, sub: "Tek seferlik yatırım" },
+      { icon: "DollarSign", label: "Asistan Maliyeti (Aylık)", value: `$${legacy.assistant_cost.toLocaleString("en-US")}`, sub: "Bu işi bir çalışana yaptırsanız" },
+      { icon: "Clock", label: "Otomasyon Maliyeti", value: `$${legacy.automation_cost.toLocaleString("en-US")}`, sub: "Tek seferlik yatırım" },
       { icon: "CalendarCheck", label: "Amortisman Süresi", value: `${legacy.amortization_days} Gün`, sub: "Kendini amorti etme süresi" },
-      { icon: "TrendingUp", label: "Yıllık Net Tasarruf", value: `₺${legacy.yearly_saving.toLocaleString("tr-TR")}`, sub: "İlk yıl sonunda kazancınız" },
+      { icon: "TrendingUp", label: "Yıllık Net Tasarruf", value: `$${legacy.yearly_saving.toLocaleString("en-US")}`, sub: "İlk yıl sonunda kazancınız" },
     ];
   }
 
