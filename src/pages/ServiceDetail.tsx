@@ -8,6 +8,7 @@ import PainPoints from "@/components/service-detail/PainPoints";
 import ROICalculator from "@/components/service-detail/ROICalculator";
 import HowItWorksDetail from "@/components/service-detail/HowItWorksDetail";
 import SetupPreview from "@/components/service-detail/SetupPreview";
+import AdvancedIntegrations from "@/components/service-detail/AdvancedIntegrations";
 import ConsultationUpsell from "@/components/service-detail/ConsultationUpsell";
 
 interface ServiceRow {
