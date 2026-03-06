@@ -73,6 +73,7 @@ const ServiceDetail = () => {
         <ROICalculator roiData={service.roi_data as any} price={service.price} />
         <HowItWorksDetail steps={service.how_it_works_steps as any} />
         <SetupPreview setupDescription={service.setup_description} />
+        <AdvancedIntegrations />
         <ConsultationUpsell />
       </main>
       <Footer />
