@@ -181,6 +181,7 @@ const AdminServices = () => {
                     onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
                   >
                     <option value="SaaS">SaaS</option>
+                    <option value="AaaS">AaaS</option>
                     <option value="Tek Seferlik">Tek Seferlik</option>
                   </select>
                 </div>
