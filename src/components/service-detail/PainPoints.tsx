@@ -1,23 +1,48 @@
 import { motion } from "framer-motion";
-import { XCircle, CheckCircle2 } from "lucide-react";
+import {
+  XCircle, CheckCircle2, Clock, AlertTriangle, Clock3, UserX,
+  TrendingDown, Zap, ShieldCheck, Moon, Target, Rocket,
+  MessageSquareOff, RefreshCw, Brain, TableProperties,
+  type LucideIcon,
+} from "lucide-react";
 
-interface PainPointItem {
-  before: string;
-  after: string;
+const iconMap: Record<string, LucideIcon> = {
+  Clock, AlertTriangle, Clock3, UserX, TrendingDown,
+  Zap, ShieldCheck, Moon, Target, Rocket,
+  MessageSquareOff, RefreshCw, Brain, TableProperties,
+};
+
+interface LegacyItem { before: string; after: string }
+interface TypedItem { type: "before" | "after"; icon?: string; text: string }
+
+interface PainPointsProps {
+  painPoints?: LegacyItem[] | TypedItem[] | null;
 }
 
-const defaultPainPoints: PainPointItem[] = [
+function isTyped(items: any[]): items is TypedItem[] {
+  return items.length > 0 && "type" in items[0] && "text" in items[0];
+}
+
+const defaultPainPoints: LegacyItem[] = [
   { before: "Günde 2+ saat manuel veri girişi", after: "7/24 kesintisiz otonom çalışma" },
   { before: "İnsan kaynaklı hatalar ve kaçan müşteriler", after: "%100 doğruluk oranı" },
   { before: "Tekrarlayan işlerden bunalmış personel", after: "Stratejik işlere odaklanan mutlu ekip" },
 ];
 
-interface PainPointsProps {
-  painPoints?: PainPointItem[] | null;
-}
-
 const PainPoints = ({ painPoints }: PainPointsProps) => {
-  const items = painPoints && painPoints.length > 0 ? painPoints : defaultPainPoints;
+  const raw = painPoints && (painPoints as any[]).length > 0 ? painPoints as any[] : defaultPainPoints;
+
+  let beforeItems: { text: string; Icon: LucideIcon }[];
+  let afterItems: { text: string; Icon: LucideIcon }[];
+
+  if (isTyped(raw)) {
+    beforeItems = raw.filter(i => i.type === "before").map(i => ({ text: i.text, Icon: (i.icon && iconMap[i.icon]) || XCircle }));
+    afterItems = raw.filter(i => i.type === "after").map(i => ({ text: i.text, Icon: (i.icon && iconMap[i.icon]) || CheckCircle2 }));
+  } else {
+    const legacy = raw as LegacyItem[];
+    beforeItems = legacy.map(i => ({ text: i.before, Icon: XCircle }));
+    afterItems = legacy.map(i => ({ text: i.after, Icon: CheckCircle2 }));
+  }
 
   return (
     <section className="py-16 md:py-24">
@@ -35,7 +60,6 @@ const PainPoints = ({ painPoints }: PainPointsProps) => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {/* Before */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -44,17 +68,16 @@ const PainPoints = ({ painPoints }: PainPointsProps) => {
             className="rounded-2xl border border-destructive/20 bg-destructive/5 p-6 space-y-4"
           >
             <h3 className="font-display font-semibold text-lg text-destructive">
-              Siz (Otomasyon Olmadan)
+              Siz (Otomasyon Olmadan - Manuel Süreçler)
             </h3>
-            {items.map((item, i) => (
+            {beforeItems.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <XCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">{item.before}</span>
+                <item.Icon className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground">{item.text}</span>
               </div>
             ))}
           </motion.div>
 
-          {/* After */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,12 +86,12 @@ const PainPoints = ({ painPoints }: PainPointsProps) => {
             className="rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-4"
           >
             <h3 className="font-display font-semibold text-lg text-primary">
-              Sistemimiz ile
+              Sistemimiz (Otomasyon Sonrası - Otonom Altyapı)
             </h3>
-            {items.map((item, i) => (
+            {afterItems.map((item, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground">{item.after}</span>
+                <item.Icon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground">{item.text}</span>
               </div>
             ))}
           </motion.div>
