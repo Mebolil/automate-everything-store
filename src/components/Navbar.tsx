@@ -53,10 +53,12 @@ const Navbar = () => {
                   </a>
                 </Button>
               )}
-              <span className="text-sm text-muted-foreground flex items-center gap-1.5">
-                <User className="w-4 h-4" />
-                {user.user_metadata?.full_name || user.email}
-              </span>
+              <Button variant="ghost" size="sm" asChild>
+                <a href="/profile" className="flex items-center gap-1.5">
+                  <User className="w-4 h-4" />
+                  {user.user_metadata?.full_name || user.email}
+                </a>
+              </Button>
               <Button variant="ghost" size="sm" onClick={signOut}>
                 <LogOut className="w-4 h-4 mr-1" />
                 Çıkış
@@ -104,6 +106,12 @@ const Navbar = () => {
                         </a>
                       </Button>
                     )}
+                    <Button variant="ghost" size="sm" asChild>
+                      <a href="/profile">
+                        <User className="w-4 h-4 mr-1" />
+                        Profilim
+                      </a>
+                    </Button>
                     <Button variant="ghost" size="sm" onClick={signOut}>
                       <LogOut className="w-4 h-4 mr-1" />
                       Çıkış Yap
