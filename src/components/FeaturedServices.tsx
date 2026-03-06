@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -116,11 +117,14 @@ const FeaturedServices = () => {
                 </ul>
 
                 <Button
+                  asChild
                   className="w-full gap-2 mt-auto"
                   variant={service.popular ? "default" : "outline"}
                 >
-                  Hemen Al
-                  <ArrowRight className="w-4 h-4" />
+                  <Link to={`/service/${service.id}`}>
+                    Hemen Al
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </Button>
               </div>
             </motion.div>

@@ -47,10 +47,15 @@ export type Database = {
           created_at: string
           description: string
           features: string[]
+          hero_subtitle: string | null
+          how_it_works_steps: Json | null
           id: string
+          pain_points: Json | null
           period: string | null
           popular: boolean
           price: number
+          roi_data: Json | null
+          setup_description: string | null
           title: string
           type: string
           updated_at: string
@@ -60,10 +65,15 @@ export type Database = {
           created_at?: string
           description: string
           features?: string[]
+          hero_subtitle?: string | null
+          how_it_works_steps?: Json | null
           id?: string
+          pain_points?: Json | null
           period?: string | null
           popular?: boolean
           price: number
+          roi_data?: Json | null
+          setup_description?: string | null
           title: string
           type: string
           updated_at?: string
@@ -73,10 +83,15 @@ export type Database = {
           created_at?: string
           description?: string
           features?: string[]
+          hero_subtitle?: string | null
+          how_it_works_steps?: Json | null
           id?: string
+          pain_points?: Json | null
           period?: string | null
           popular?: boolean
           price?: number
+          roi_data?: Json | null
+          setup_description?: string | null
           title?: string
           type?: string
           updated_at?: string
