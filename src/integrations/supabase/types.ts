@@ -44,8 +44,10 @@ export type Database = {
       services: {
         Row: {
           active: boolean
+          consultation_data: Json | null
           created_at: string
           description: string
+          feature_comparison: Json | null
           features: string[]
           hero_subtitle: string | null
           how_it_works_steps: Json | null
@@ -62,8 +64,10 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          consultation_data?: Json | null
           created_at?: string
           description: string
+          feature_comparison?: Json | null
           features?: string[]
           hero_subtitle?: string | null
           how_it_works_steps?: Json | null
@@ -80,8 +84,10 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          consultation_data?: Json | null
           created_at?: string
           description?: string
+          feature_comparison?: Json | null
           features?: string[]
           hero_subtitle?: string | null
           how_it_works_steps?: Json | null
