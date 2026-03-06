@@ -33,7 +33,7 @@ const ServiceHero = ({ title, subtitle, price, period }: ServiceHeroProps) => {
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="text-base px-8 gap-2">
-              Temel Paketi Satın Al — ₺{price.toLocaleString("tr-TR")}
+              Temel Paketi Satın Al — ${price}
               {period && <span className="text-primary-foreground/70">{period}</span>}
               <ArrowRight className="w-4 h-4" />
             </Button>
