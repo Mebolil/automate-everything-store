@@ -8,6 +8,7 @@ import PainPoints from "@/components/service-detail/PainPoints";
 import ROICalculator from "@/components/service-detail/ROICalculator";
 import HowItWorksDetail from "@/components/service-detail/HowItWorksDetail";
 import SetupPreview from "@/components/service-detail/SetupPreview";
+import AdvancedIntegrations from "@/components/service-detail/AdvancedIntegrations";
 import ConsultationUpsell from "@/components/service-detail/ConsultationUpsell";
 
 interface ServiceRow {
@@ -72,6 +73,7 @@ const ServiceDetail = () => {
         <ROICalculator roiData={service.roi_data as any} price={service.price} />
         <HowItWorksDetail steps={service.how_it_works_steps as any} />
         <SetupPreview setupDescription={service.setup_description} />
+        <AdvancedIntegrations />
         <ConsultationUpsell />
       </main>
       <Footer />
