@@ -9,6 +9,7 @@ import ROICalculator from "@/components/service-detail/ROICalculator";
 import HowItWorksDetail from "@/components/service-detail/HowItWorksDetail";
 import SetupPreview from "@/components/service-detail/SetupPreview";
 import AdvancedIntegrations from "@/components/service-detail/AdvancedIntegrations";
+import FeatureComparison from "@/components/service-detail/FeatureComparison";
 import ConsultationUpsell from "@/components/service-detail/ConsultationUpsell";
 
 interface ServiceRow {
@@ -22,6 +23,8 @@ interface ServiceRow {
   roi_data: any;
   how_it_works_steps: any;
   setup_description: string | null;
+  feature_comparison: any;
+  consultation_data: any;
 }
 
 const ServiceDetail = () => {
@@ -35,7 +38,7 @@ const ServiceDetail = () => {
     const fetch = async () => {
       const { data } = await supabase
         .from("services")
-        .select("id, title, description, price, period, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description")
+        .select("id, title, description, price, period, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description, feature_comparison, consultation_data")
         .eq("id", id)
         .eq("active", true)
         .maybeSingle();
@@ -72,9 +75,10 @@ const ServiceDetail = () => {
         <PainPoints painPoints={service.pain_points as any} />
         <ROICalculator roiData={service.roi_data as any} price={service.price} />
         <HowItWorksDetail steps={service.how_it_works_steps as any} />
+        <FeatureComparison featureComparison={service.feature_comparison as any} />
         <SetupPreview setupDescription={service.setup_description} />
         <AdvancedIntegrations />
-        <ConsultationUpsell />
+        <ConsultationUpsell consultationData={service.consultation_data as any} />
       </main>
       <Footer />
     </div>
