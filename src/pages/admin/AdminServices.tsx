@@ -261,7 +261,7 @@ const AdminServices = () => {
             </CardHeader>
             <CardContent>
               <div className="flex items-baseline gap-1 mb-3">
-                <span className="text-2xl font-display font-bold">₺{service.price.toLocaleString("tr-TR")}</span>
+                <span className="text-2xl font-display font-bold">${service.price}</span>
                 <span className="text-sm text-muted-foreground">{service.period}</span>
               </div>
               <div className="flex flex-wrap gap-1.5">

@@ -102,7 +102,7 @@ const FeaturedServices = () => {
 
                 <div className="mb-5">
                   <span className="font-display text-3xl font-bold">
-                    ₺{service.price.toLocaleString("tr-TR")}
+                    ${service.price}
                   </span>
                   <span className="text-muted-foreground text-sm">{service.period}</span>
                 </div>
