@@ -82,10 +82,12 @@ const FeaturedServices = () => {
 
                 <div className="flex items-center gap-2 mb-3">
                   <Badge
-                    variant={service.type === "SaaS" ? "default" : "secondary"}
+                    variant="secondary"
                     className={
                       service.type === "SaaS"
-                        ? "bg-accent/10 text-accent border-0 hover:bg-accent/10"
+                        ? "bg-accent/10 text-accent-foreground border-0 hover:bg-accent/10"
+                        : service.type === "AaaS"
+                        ? "bg-primary/10 text-primary border-0 hover:bg-primary/10"
                         : "bg-warm/10 text-warm border-0 hover:bg-warm/10"
                     }
                   >
