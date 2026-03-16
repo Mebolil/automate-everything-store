@@ -39,7 +39,7 @@ const ServiceDetail = () => {
     const fetch = async () => {
       const { data } = await supabase
         .from("services")
-        .select("id, title, description, price, period, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description, feature_comparison, consultation_data")
+        .select("id, title, description, price, period, type, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description, feature_comparison, consultation_data")
         .eq("id", id)
         .eq("active", true)
         .maybeSingle();
