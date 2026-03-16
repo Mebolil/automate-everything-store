@@ -18,6 +18,7 @@ interface ServiceRow {
   description: string;
   price: number;
   period: string | null;
+  type: string;
   hero_subtitle: string | null;
   pain_points: any;
   roi_data: any;
