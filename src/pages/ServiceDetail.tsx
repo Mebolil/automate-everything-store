@@ -72,6 +72,7 @@ const ServiceDetail = () => {
           subtitle={service.hero_subtitle || service.description}
           price={service.price}
           period={service.period}
+          type={service.type}
         />
         <PainPoints painPoints={service.pain_points as any} />
         <ROICalculator roiData={service.roi_data as any} price={service.price} />
