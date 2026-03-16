@@ -18,6 +18,7 @@ interface ServiceRow {
   description: string;
   price: number;
   period: string | null;
+  type: string;
   hero_subtitle: string | null;
   pain_points: any;
   roi_data: any;
@@ -38,7 +39,7 @@ const ServiceDetail = () => {
     const fetch = async () => {
       const { data } = await supabase
         .from("services")
-        .select("id, title, description, price, period, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description, feature_comparison, consultation_data")
+        .select("id, title, description, price, period, type, hero_subtitle, pain_points, roi_data, how_it_works_steps, setup_description, feature_comparison, consultation_data")
         .eq("id", id)
         .eq("active", true)
         .maybeSingle();
@@ -71,6 +72,7 @@ const ServiceDetail = () => {
           subtitle={service.hero_subtitle || service.description}
           price={service.price}
           period={service.period}
+          type={service.type}
         />
         <PainPoints painPoints={service.pain_points as any} />
         <ROICalculator roiData={service.roi_data as any} price={service.price} />

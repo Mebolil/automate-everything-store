@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Settings } from "lucide-react";
 import { motion } from "framer-motion";
@@ -7,9 +8,16 @@ interface ServiceHeroProps {
   subtitle: string;
   price: number;
   period: string | null;
+  type: string;
 }
 
-const ServiceHero = ({ title, subtitle, price, period }: ServiceHeroProps) => {
+const typeBadgeClass: Record<string, string> = {
+  SaaS: "bg-accent/10 text-accent-foreground border-0",
+  AaaS: "bg-primary/10 text-primary border-0",
+  "Tek Seferlik": "bg-warm/10 text-warm border-0",
+};
+
+const ServiceHero = ({ title, subtitle, price, period, type }: ServiceHeroProps) => {
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -24,6 +32,13 @@ const ServiceHero = ({ title, subtitle, price, period }: ServiceHeroProps) => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mx-auto text-center"
         >
+          <Badge
+            variant="secondary"
+            className={`mb-4 text-sm px-4 py-1 ${typeBadgeClass[type] || "bg-muted text-muted-foreground border-0"}`}
+          >
+            {type}
+          </Badge>
+
           <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
             {title}
           </h1>
