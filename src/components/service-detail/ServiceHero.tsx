@@ -48,18 +48,29 @@ const ServiceHero = ({ title, subtitle, price, period, type }: ServiceHeroProps)
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="text-base px-8 gap-2">
-              Temel Paketi Satın Al — ${price}
+              {type === "Tek Seferlik" ? `Projeyi Başlat — $${price}` : `Temel Paketi Satın Al — $${price}`}
               {period && <span className="text-primary-foreground/70">{period}</span>}
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button size="lg" variant="ghost" className="text-base px-6 gap-2">
-              <Settings className="w-4 h-4" />
-              Gelişmiş Entegrasyon Talep Et
+              {type === "Tek Seferlik" ? (
+                <>
+                  <Phone className="w-4 h-4" />
+                  Özel İhtiyaçlar İçin Görüşelim
+                </>
+              ) : (
+                <>
+                  <Settings className="w-4 h-4" />
+                  Gelişmiş Entegrasyon Talep Et
+                </>
+              )}
             </Button>
-            <Button size="lg" variant="ghost" className="text-base px-6 gap-2">
-              <Phone className="w-4 h-4" />
-              Anahtar Teslim Kurulum İste
-            </Button>
+            {type !== "Tek Seferlik" && (
+              <Button size="lg" variant="ghost" className="text-base px-6 gap-2">
+                <Phone className="w-4 h-4" />
+                Anahtar Teslim Kurulum İste
+              </Button>
+            )}
           </div>
         </motion.div>
       </div>
