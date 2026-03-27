@@ -124,7 +124,7 @@ const FeaturedServices = () => {
                   variant={service.popular ? "default" : "outline"}
                 >
                   <Link to={`/service/${service.id}`}>
-                    Hemen Al
+                    İncele
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Button>
