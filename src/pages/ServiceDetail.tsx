@@ -7,7 +7,7 @@ import ServiceHero from "@/components/service-detail/ServiceHero";
 import PainPoints from "@/components/service-detail/PainPoints";
 import ROICalculator from "@/components/service-detail/ROICalculator";
 import HowItWorksDetail from "@/components/service-detail/HowItWorksDetail";
-import SetupPreview from "@/components/service-detail/SetupPreview";
+import SpeedAdvantage from "@/components/service-detail/SpeedAdvantage";
 import AdvancedIntegrations from "@/components/service-detail/AdvancedIntegrations";
 import FeatureComparison from "@/components/service-detail/FeatureComparison";
 import ConsultationUpsell from "@/components/service-detail/ConsultationUpsell";
@@ -78,7 +78,7 @@ const ServiceDetail = () => {
         <ROICalculator roiData={service.roi_data as any} price={service.price} />
         <HowItWorksDetail steps={service.how_it_works_steps as any} />
         <FeatureComparison featureComparison={service.feature_comparison as any} />
-        
+        <SpeedAdvantage ourDays={5} />
         <AdvancedIntegrations />
         <ConsultationUpsell consultationData={service.consultation_data as any} />
       </main>
