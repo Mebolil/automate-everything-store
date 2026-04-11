@@ -56,10 +56,10 @@ const Hero = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {[
-              "Make",
-              "Zapier",
               "WhatsApp",
-              "Google Workspace",
+              "Google Sheets",
+              "Google Docs",
+              "Gmail",
               "Slack",
               "HubSpot",
             ].map((name) => (
