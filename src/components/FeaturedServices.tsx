@@ -102,12 +102,6 @@ const FeaturedServices = () => {
                   {service.description}
                 </p>
 
-                <div className="mb-5">
-                  <span className="font-display text-3xl font-bold">
-                    ${service.price}
-                  </span>
-                  <span className="text-muted-foreground text-sm">{service.period}</span>
-                </div>
 
                 <ul className="space-y-2.5 mb-6">
                   {service.features.map((feature) => (
