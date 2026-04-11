@@ -11,6 +11,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminServices from "./pages/admin/AdminServices";
 import Profile from "./pages/Profile";
 import ServiceDetail from "./pages/ServiceDetail";
+import BudgetService from "./pages/BudgetService";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
