@@ -48,8 +48,7 @@ const ServiceHero = ({ title, subtitle, price, period, type }: ServiceHeroProps)
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="text-base px-8 gap-2">
-              {type === "Tek Seferlik" ? `Projeyi Başlat — $${price}` : `Temel Paketi Satın Al — $${price}`}
-              {period && <span className="text-primary-foreground/70">{period}</span>}
+              {type === "Tek Seferlik" ? "Projeyi Başlat" : "Hizmeti İncele"}
               <ArrowRight className="w-4 h-4" />
             </Button>
             <Button size="lg" variant="ghost" className="text-base px-6 gap-2">
