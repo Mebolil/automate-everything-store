@@ -44,28 +44,33 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Stats */}
+        {/* Technology Partners */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
+          className="mt-20 max-w-3xl mx-auto"
         >
-          {[
-            { value: "500+", label: "Aktif Kullanıcı" },
-            { value: "50+", label: "Otomasyon Hizmeti" },
-            { value: "99.9%", label: "Uptime" },
-            { value: "7/24", label: "Destek" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div className="font-display text-3xl font-bold text-foreground">
-                {stat.value}
-              </div>
-              <div className="text-sm text-muted-foreground mt-1">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+          <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest">
+            Entegre olduğumuz platformlar
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {[
+              "Make",
+              "Zapier",
+              "WhatsApp",
+              "Google Workspace",
+              "Slack",
+              "HubSpot",
+            ].map((name) => (
+              <span
+                key={name}
+                className="text-lg md:text-xl font-semibold text-muted-foreground/60 hover:text-foreground transition-colors cursor-default"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
