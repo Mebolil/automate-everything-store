@@ -57,13 +57,67 @@ const FeaturedServices = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Static Budget Service Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="relative flex flex-col h-full p-6 rounded-2xl bg-card border border-primary shadow-md shadow-primary/10 transition-all duration-300 hover:shadow-lg">
+              <div className="absolute -top-3 left-6">
+                <Badge className="bg-primary text-primary-foreground px-3 py-1">
+                  Yeni
+                </Badge>
+              </div>
+
+              <div className="flex items-center gap-2 mb-3">
+                <Badge
+                  variant="secondary"
+                  className="bg-primary/10 text-primary border-0 hover:bg-primary/10"
+                >
+                  AaaS
+                </Badge>
+              </div>
+
+              <h3 className="font-display font-semibold text-lg mb-2">
+                KOBİ Bütçe Yönetim Sistemi
+              </h3>
+              <p className="text-sm text-muted-foreground mb-5 flex-grow">
+                Ajansınızın gelir ve giderlerini tek ekranda, net ve şeffaf bir şekilde görün. Sürpriz nakit krizlerine son.
+              </p>
+
+              <ul className="space-y-2.5 mb-6">
+                {[
+                  "Gerçek zamanlı gelir/gider takibi",
+                  "Otomatik bütçe sapma uyarıları",
+                  "Nakit akışı tahmini (30-90 gün)",
+                  "Aylık PDF rapor",
+                  "Danışmanlık desteği",
+                ].map((feature) => (
+                  <li key={feature} className="flex items-center gap-2 text-sm">
+                    <Check className="w-4 h-4 text-accent shrink-0" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <Button asChild className="w-full gap-2 mt-auto">
+                <Link to="/butceleme">
+                  İncele
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+
           {services.map((service, i) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
+              transition={{ duration: 0.4, delay: (i + 1) * 0.08 }}
             >
               <div
                 className={`relative flex flex-col h-full p-6 rounded-2xl bg-card border transition-all duration-300 hover:shadow-lg ${
@@ -101,7 +155,6 @@ const FeaturedServices = () => {
                 <p className="text-sm text-muted-foreground mb-5 flex-grow">
                   {service.description}
                 </p>
-
 
                 <ul className="space-y-2.5 mb-6">
                   {service.features.map((feature) => (
