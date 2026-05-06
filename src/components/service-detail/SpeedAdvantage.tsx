@@ -95,7 +95,7 @@ const SpeedAdvantage = ({
             >
               <div className="w-36 md:w-44 shrink-0 flex items-center gap-2 text-sm font-semibold text-foreground">
                 <Rocket className="w-4 h-4 shrink-0 text-primary" />
-                <span className="truncate">Otomasyon Çözüm</span>
+                <span className="truncate">Hisu Solutions</span>
               </div>
               <div className="flex-1 relative">
                 <div className="h-9 rounded-lg bg-primary/10 border border-primary/30 overflow-hidden">
