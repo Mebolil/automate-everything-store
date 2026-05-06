@@ -58,9 +58,11 @@ const Hero = () => {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="text-base px-8 gap-2">
-              Ücretsiz Görüşme Al
-              <ArrowRight className="w-4 h-4" />
+            <Button size="lg" className="text-base px-8 gap-2" asChild>
+              <Link to="/iletisim">
+                Ücretsiz Görüşme Al
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-base px-8" asChild>
               <a href="#hizmetler">Ürünleri İncele</a>
