@@ -1,449 +1,361 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Check,
+  X,
+  TrendingUp,
+  Package,
+  Target,
+  Receipt,
+  FileBarChart,
+  BellRing,
+  MessageCircle,
+  Sparkles,
+} from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const CheckIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <circle cx="7" cy="7" r="6.5" stroke="#1d9e75" strokeWidth="1.2" />
-    <path d="M4 7l2 2 4-4" stroke="#1d9e75" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+const painPoints = [
+  "Ay sonu ne kaldığını bilmiyorsun",
+  "Reklam harcıyor ama gerçek ROI'yi göremiyorsun",
+  "Stok takibi Excel'de, satışlar başka yerde",
+  "Kar mı ettim, zarar mı? Cevap yok",
+];
 
-const XIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-    <circle cx="7" cy="7" r="6.5" stroke="#e24b4a" strokeWidth="1.2" />
-    <path d="M5 5l4 4M9 5l-4 4" stroke="#e24b4a" strokeWidth="1.4" strokeLinecap="round" />
-  </svg>
-);
+const solutions = [
+  "Gerçek zamanlı gelir, gider, net kâr",
+  "Reklam kampanyası bazlı gerçek ROI ve ROAS",
+  "FIFO stok takibi otomatik",
+  "Her şey tek ekranda, her zaman güncel",
+];
 
-const BoltIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <path d="M9 2L3 9h5l-1 5 6-7H8l1-5z" stroke="#1d9e75" strokeWidth="1.4" strokeLinejoin="round" />
-  </svg>
-);
+const features = [
+  {
+    icon: TrendingUp,
+    title: "Satış & Cari Takibi",
+    desc: "Müşteri bazlı tahsilat, kısmi ödeme, gecikme uyarısı.",
+  },
+  {
+    icon: Package,
+    title: "Stok Yönetimi",
+    desc: "FIFO maliyet, kritik seviye uyarısı, otomatik düşüm.",
+  },
+  {
+    icon: Target,
+    title: "Reklam ROI",
+    desc: "Meta, Google, TikTok kampanyalarını satışa bağla.",
+  },
+  {
+    icon: Receipt,
+    title: "Gider Takibi",
+    desc: "Kategori ve kişi bazlı, aylık trend.",
+  },
+  {
+    icon: FileBarChart,
+    title: "Otomatik Raporlar",
+    desc: "5 sekmeli rapor, Excel ve PDF export.",
+  },
+  {
+    icon: BellRing,
+    title: "Hatırlatıcılar",
+    desc: "Gecikmiş tahsilat, tedarikçi borcu, kritik stok otomatik uyarısı.",
+  },
+];
 
 export default function BudgetService() {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
-    employees: "",
-    revenue: "",
-    challenge: "",
+    businessType: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email) return;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.email) return;
     setSubmitted(true);
   };
 
+  const scrollToForm = () => {
+    document.getElementById("demo-form")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div style={{ background: "#f0f0ec", minHeight: "100vh", fontFamily: "system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-background">
+      <Navbar />
 
-      {/* HERO */}
-      <div style={{ padding: "72px 48px 60px", textAlign: "center" }}>
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: 7,
-          background: "#d4efe3", color: "#0f6e56", fontSize: 13, fontWeight: 600,
-          padding: "6px 14px", borderRadius: 999, marginBottom: 24,
-        }}>
-          <span style={{ width: 7, height: 7, background: "#1d9e75", borderRadius: "50%", display: "inline-block" }} />
-          Finansal Otomasyon
-        </div>
-        <h1 style={{
-          fontSize: 52, fontWeight: 800, color: "#111", lineHeight: 1.08,
-          maxWidth: 640, margin: "0 auto 20px", letterSpacing: -1.5,
-        }}>
-          KOBİ Bütçe Yönetim Sistemi
-        </h1>
-        <p style={{ fontSize: 17, color: "#666", maxWidth: 520, margin: "0 auto 36px", lineHeight: 1.65 }}>
-          Ajansınızın gelir ve giderlerini tek ekranda, net ve şeffaf bir şekilde görün. Sürpriz nakit krizlerine son.
-        </p>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 32, flexWrap: "wrap" }}>
-          <button
-            onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}
-            style={{
-              background: "#1d9e75", color: "#fff", fontSize: 15, fontWeight: 600,
-              padding: "14px 28px", borderRadius: 12, border: "none", cursor: "pointer",
-              display: "flex", alignItems: "center", gap: 8,
-            }}
-          >
-            <BoltIcon />
-            Ücretsiz Keşif Görüşmesi Al
-          </button>
-          <button
-            onClick={() => document.getElementById("dashboard-section")?.scrollIntoView({ behavior: "smooth" })}
-            style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#555", cursor: "pointer", background: "none", border: "none" }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle cx="8" cy="8" r="7" stroke="#999" strokeWidth="1.2" />
-              <path d="M6 8l2 2 4-4" stroke="#999" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-            Demo İncele
-          </button>
-        </div>
-      </div>
-
-      {/* BEFORE / AFTER */}
-      <div style={{ padding: "0 48px 56px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, maxWidth: 860, margin: "0 auto" }}>
-          {/* Bad */}
-          <div style={{ background: "#fff", borderRadius: 16, padding: 28, border: "1px solid #f7c1c1" }}>
-            <p style={{ fontSize: 14, fontWeight: 700, color: "#a32d2d", marginBottom: 18 }}>
-              Şu anki durumunuz (bütçesiz)
-            </p>
-            {["Ay sonu ne kaldı bilmiyorsunuz", "Giderler gelirden hızlı büyüyor", "Excel'ler güncellenmeden eskiyor", "Muhasebeci arar, siz cevap bilmezsiniz"].map((t) => (
-              <div key={t} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12, fontSize: 14, color: "#333" }}>
-                <span style={{ marginTop: 1, flexShrink: 0 }}><XIcon /></span>{t}
+      <main>
+        {/* HERO */}
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+          </div>
+          <div className="container mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+                <Sparkles className="w-4 h-4" />
+                Finansal Otomasyon
               </div>
-            ))}
-          </div>
-          {/* Good */}
-          <div style={{ background: "#f6fdf9", borderRadius: 16, padding: 28, border: "1px solid #9fe1cb" }}>
-            <p style={{ fontSize: 14, fontWeight: 700, color: "#0f6e56", marginBottom: 18 }}>
-              Sistemimizle (otomatik şeffaflık)
-            </p>
-            {["Gerçek zamanlı gelir/gider takibi", "Ay sonu tahmini otomatik hesaplanır", "Bütçe aşımı anında bildirim gönderir", "Her toplantıya hazır PDF rapor"].map((t) => (
-              <div key={t} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 12, fontSize: 14, color: "#333" }}>
-                <span style={{ marginTop: 1, flexShrink: 0 }}><CheckIcon /></span>{t}
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl mx-auto leading-[1.1]">
+                Paranın Nereye Gittiğini
+                <span className="text-primary"> Artık Biliyorsun</span>
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Satış, stok, gider ve reklam performansını tek ekranda gör.
+                Excel'e, muhasebecine sormaya son.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button size="lg" className="text-base px-8 gap-2" onClick={scrollToForm}>
+                  Demo Talep Et
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+                <Button size="lg" variant="outline" className="text-base px-8" asChild>
+                  <a href="#nasil-calisir">Nasıl Çalışır?</a>
+                </Button>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* DEMO DASHBOARD */}
-      <div id="dashboard-section" style={{ padding: "0 48px 56px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6, background: "#d4efe3",
-            color: "#0f6e56", fontSize: 12, fontWeight: 600, padding: "5px 12px",
-            borderRadius: 999, marginBottom: 14, letterSpacing: "0.04em",
-          }}>
-            Örnek Dashboard
-          </div>
-          <h2 style={{ fontSize: 30, fontWeight: 800, color: "#111", marginBottom: 8, letterSpacing: -0.5 }}>Böyle Görünür</h2>
-          <p style={{ fontSize: 15, color: "#666", marginBottom: 28, lineHeight: 1.6 }}>
-            Ajansınızın finansal sağlığını tek bakışta anlayan bir panel.
-          </p>
-
-          <div style={{ background: "#fff", borderRadius: 20, border: "0.5px solid #e0e0da", padding: 28 }}>
-            {/* Header */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
-              <span style={{ fontSize: 16, fontWeight: 700, color: "#111" }}>Nisan 2026 — Bütçe Özeti</span>
-              <span style={{ fontSize: 12, color: "#888", background: "#f5f5f2", padding: "4px 10px", borderRadius: 6 }}>
-                Güncelleme: Bugün 09:14
-              </span>
+        {/* PAIN VS SOLUTION */}
+        <section id="nasil-calisir" className="py-20 border-t border-border">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              <div className="p-8 rounded-2xl border border-border bg-card/50">
+                <h2 className="font-display text-2xl font-semibold mb-6 text-destructive">
+                  Şu an:
+                </h2>
+                <ul className="space-y-4">
+                  {painPoints.map((p) => (
+                    <li key={p} className="flex items-start gap-3 text-muted-foreground">
+                      <X className="w-5 h-5 mt-0.5 text-destructive flex-shrink-0" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="p-8 rounded-2xl border border-primary/40 bg-primary/5">
+                <h2 className="font-display text-2xl font-semibold mb-6 text-primary">
+                  BütçeCRM ile:
+                </h2>
+                <ul className="space-y-4">
+                  {solutions.map((s) => (
+                    <li key={s} className="flex items-start gap-3 text-foreground">
+                      <Check className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
+                      <span>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+          </div>
+        </section>
 
-            {/* Metrics */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginBottom: 24 }}>
-              {[
-                { label: "Toplam Gelir", val: "₺248.500", color: "#1d9e75", sub: "↑ %12 geçen aya göre", subColor: "#1d9e75" },
-                { label: "Toplam Gider", val: "₺179.200", color: "#e24b4a", sub: "↑ %8 bütçe üstü", subColor: "#e24b4a" },
-                { label: "Net Kâr", val: "₺69.300", color: "#ba7517", sub: "%27,9 kâr marjı", subColor: "#1d9e75" },
-                { label: "Nakit Rezerv", val: "₺114.000", color: "#111", sub: "2,1 aylık güvence", subColor: "#1d9e75" },
-              ].map((m) => (
-                <div key={m.label} style={{ background: "#f8f8f5", borderRadius: 10, padding: 16 }}>
-                  <div style={{ fontSize: 11, color: "#888", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.05em" }}>{m.label}</div>
-                  <div style={{ fontSize: 20, fontWeight: 700, color: m.color }}>{m.val}</div>
-                  <div style={{ fontSize: 11, color: m.subColor, marginTop: 4 }}>{m.sub}</div>
+        {/* FEATURES */}
+        <section className="py-20 border-t border-border">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
+                Tek panelde <span className="text-primary">tüm operasyon</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {features.map(({ icon: Icon, title, desc }) => (
+                <div
+                  key={title}
+                  className="p-6 rounded-2xl border border-border bg-card/50 hover:border-primary/40 transition-colors"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold mb-2">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Bars */}
-            {[
-              { label: "Proje Gelirleri", pct: 88, color: "#1d9e75", val: "₺218K" },
-              { label: "Sabit Giderler", pct: 52, color: "#e24b4a", val: "₺94K" },
-              { label: "Personel", pct: 40, color: "#e24b4a", val: "₺72K" },
-              { label: "Pazarlama", pct: 15, color: "#ba7517", val: "₺13K" },
-            ].map((b) => (
-              <div key={b.label} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
-                <span style={{ fontSize: 12, color: "#555", width: 110, flexShrink: 0 }}>{b.label}</span>
-                <div style={{ flex: 1, background: "#f0f0ec", borderRadius: 99, height: 10, overflow: "hidden" }}>
-                  <div style={{ width: `${b.pct}%`, height: "100%", background: b.color, borderRadius: 99 }} />
+        {/* PRICING */}
+        <section className="py-20 border-t border-border">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
+                Sade ve şeffaf <span className="text-primary">fiyatlandırma</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Monthly */}
+              <div className="p-8 rounded-2xl border border-border bg-card/50">
+                <div className="text-sm font-medium text-muted-foreground mb-2">
+                  Aylık Plan
                 </div>
-                <span style={{ fontSize: 12, fontWeight: 600, color: "#333", minWidth: 54, textAlign: "right" }}>{b.val}</span>
-              </div>
-            ))}
-
-            {/* Alert */}
-            <div style={{
-              background: "#d4efe3", borderRadius: 12, padding: "14px 18px",
-              display: "flex", alignItems: "center", gap: 12, marginTop: 16,
-            }}>
-              <div style={{
-                width: 30, height: 30, background: "#1d9e75", borderRadius: 8,
-                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-              }}>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M7 3v4M7 9v1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
-              </div>
-              <span style={{ fontSize: 13, color: "#085041", fontWeight: 500 }}>
-                Yazılım abonelikleri bu ay bütçenin %18 üstüne çıktı — incelemeniz önerilir.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* NASIL ÇALIŞIR */}
-      <div style={{ background: "#fff", padding: "56px 48px" }}>
-        <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6, background: "#d4efe3",
-            color: "#0f6e56", fontSize: 12, fontWeight: 600, padding: "5px 12px",
-            borderRadius: 999, marginBottom: 14, letterSpacing: "0.04em",
-          }}>
-            Nasıl Çalışır?
-          </div>
-          <h2 style={{ fontSize: 30, fontWeight: 800, color: "#111", letterSpacing: -0.5 }}>
-            3 Adımda Kurulur, Arka Planda Çalışır
-          </h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 0, maxWidth: 820, margin: "0 auto" }}>
-          {[
-            {
-              num: "ADIM 01", title: "Veri Kaynakları Bağlanır",
-              desc: "Banka, fatura, muhasebe yazılımı veya Excel'iniz sisteme entegre edilir.",
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="#1d9e75" strokeWidth="2" strokeLinecap="round" /></svg>,
-            },
-            {
-              num: "ADIM 02", title: "Yapay Zeka Kategorize Eder",
-              desc: "Her işlem otomatik etiketlenir, bütçe kalemleriyle eşleştirilir ve analiz edilir.",
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="#1d9e75" strokeWidth="2" /><rect x="14" y="3" width="7" height="7" rx="1" stroke="#1d9e75" strokeWidth="2" /><rect x="3" y="14" width="7" height="7" rx="1" stroke="#1d9e75" strokeWidth="2" /><path d="M14 17.5h7M17.5 14v7" stroke="#1d9e75" strokeWidth="2" strokeLinecap="round" /></svg>,
-            },
-            {
-              num: "ADIM 03", title: "Raporlar Hazır",
-              desc: "Aylık özet, bütçe sapma raporu ve nakit akışı tahmini otomatik oluşturulur.",
-              icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M4 14h3v6H4V14zM10.5 9h3v11h-3V9zM17 4h3v16h-3V4z" stroke="#1d9e75" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>,
-            },
-          ].map((s, i) => (
-            <div key={s.num} style={{ textAlign: "center", padding: "0 20px", position: "relative" }}>
-              {i < 2 && (
-                <div style={{
-                  position: "absolute", top: 27, left: "50%", right: "-50%",
-                  height: 0, borderTop: "2px dashed #d0d0cc", zIndex: 0,
-                }} />
-              )}
-              <div style={{
-                width: 56, height: 56, background: "#d4efe3", borderRadius: 14,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                margin: "0 auto 16px", position: "relative", zIndex: 1,
-              }}>
-                {s.icon}
-              </div>
-              <p style={{ fontSize: 11, fontWeight: 700, color: "#1d9e75", letterSpacing: "0.08em", marginBottom: 8 }}>{s.num}</p>
-              <p style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 6 }}>{s.title}</p>
-              <p style={{ fontSize: 13, color: "#666", lineHeight: 1.55 }}>{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ÖZELLİKLER */}
-      <div style={{ padding: "56px 48px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6, background: "#d4efe3",
-            color: "#0f6e56", fontSize: 12, fontWeight: 600, padding: "5px 12px",
-            borderRadius: 999, marginBottom: 14, letterSpacing: "0.04em",
-          }}>
-            Kapsam
-          </div>
-          <h2 style={{ fontSize: 30, fontWeight: 800, color: "#111", marginBottom: 8, letterSpacing: -0.5 }}>Ne Sunuyoruz?</h2>
-          <p style={{ fontSize: 15, color: "#666", marginBottom: 32, lineHeight: 1.6 }}>
-            Ajanslar ve hizmet firmaları için özelleştirilmiş bütçe modülleri.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
-            {[
-              { title: "Gelir-Gider Takibi", desc: "Tüm para hareketleriniz otomatik kategorize edilir. Nereye para gittiğini saniyeler içinde görürsünüz." },
-              { title: "Bütçe vs. Gerçek", desc: "Planlanan ile gerçekleşen karşılaştırılır. Sapma olduğunda anında uyarı alırsınız." },
-              { title: "Nakit Akışı Tahmini", desc: "Önümüzdeki 30-90 günün nakit durumunu simüle eder. Kriz gelmeden önce görürsünüz." },
-              { title: "Departman Bazlı Bütçe", desc: "Proje, ekip ya da maliyet merkezine göre bütçeleri ayrı ayrı izleyin ve kontrol edin." },
-              { title: "Otomatik PDF Rapor", desc: "Her ayın başında yönetim kurulu için hazır özet rapor e-postanıza gelir." },
-            ].map((f) => (
-              <div key={f.title} style={{
-                background: "#fff", borderRadius: 16, padding: 24, border: "0.5px solid #e0e0da",
-              }}>
-                <div style={{
-                  width: 40, height: 40, background: "#d4efe3", borderRadius: 10,
-                  display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14,
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M3 9h12M3 5h12M3 13h6" stroke="#1d9e75" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
+                <div className="mb-6">
+                  <span className="font-display text-4xl font-bold">₺890</span>
+                  <span className="text-muted-foreground"> / ay + KDV</span>
                 </div>
-                <p style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 8 }}>{f.title}</p>
-                <p style={{ fontSize: 13, color: "#666", lineHeight: 1.6 }}>{f.desc}</p>
+                <Button className="w-full gap-2" onClick={scrollToForm}>
+                  Demo Talep Et <ArrowRight className="w-4 h-4" />
+                </Button>
+                <p className="mt-4 text-xs text-muted-foreground text-center">
+                  Demo görüşmesinde ürünü birlikte inceleriz, soruların yanıtlanır.
+                </p>
               </div>
-            ))}
-            {/* Dark card */}
-            <div style={{ background: "#111", borderRadius: 16, padding: 24, border: "0.5px solid #333" }}>
-              <div style={{
-                width: 40, height: 40, background: "#1d4030", borderRadius: 10,
-                display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14,
-              }}>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M9 3v12M3 9h12" stroke="#1d9e75" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
+              {/* Yearly */}
+              <div className="relative p-8 rounded-2xl border-2 border-primary bg-primary/5">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-semibold">
+                  En Popüler
+                </span>
+                <div className="text-sm font-medium text-primary mb-2">Yıllık Plan</div>
+                <div className="mb-1">
+                  <span className="font-display text-4xl font-bold">₺8.900</span>
+                  <span className="text-muted-foreground"> / yıl + KDV</span>
+                </div>
+                <p className="text-sm text-primary mb-6">
+                  2 ay bedava · Yılda ₺1.780 tasarruf
+                </p>
+                <Button className="w-full gap-2" onClick={scrollToForm}>
+                  Demo Talep Et <ArrowRight className="w-4 h-4" />
+                </Button>
+                <p className="mt-4 text-xs text-muted-foreground text-center">
+                  Demo görüşmesinde ürünü birlikte inceleriz, soruların yanıtlanır.
+                </p>
               </div>
-              <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Danışmanlık Desteği</p>
-              <p style={{ fontSize: 13, color: "#aaa", lineHeight: 1.6 }}>
-                Sadece araç değil, finans stratejisi de sunarız. Aylık görüşme + soru-cevap dahildir.
-              </p>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* ONBOARDING FORM */}
-      <div id="form-section" style={{ padding: "0 48px 56px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 6, background: "#d4efe3",
-            color: "#0f6e56", fontSize: 12, fontWeight: 600, padding: "5px 12px",
-            borderRadius: 999, marginBottom: 14, letterSpacing: "0.04em",
-          }}>
-            Başvuru
-          </div>
-          <h2 style={{ fontSize: 30, fontWeight: 800, color: "#111", marginBottom: 8, letterSpacing: -0.5 }}>
-            Ücretsiz Keşif Görüşmesi
-          </h2>
-          <p style={{ fontSize: 15, color: "#666", marginBottom: 28, lineHeight: 1.6 }}>
-            Firmanıza özel bir bütçe sistemi tasarlayalım. 30 dakikada ihtiyacı anlıyor, öneri hazırlıyoruz.
-          </p>
-
-          {submitted ? (
-            <div style={{
-              background: "#fff", borderRadius: 20, border: "0.5px solid #9fe1cb",
-              padding: 48, textAlign: "center",
-            }}>
-              <div style={{
-                width: 56, height: 56, background: "#d4efe3", borderRadius: 999,
-                display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px",
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12l5 5L19 7" stroke="#1d9e75" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+        {/* DEMO FORM */}
+        <section id="demo-form" className="py-20 border-t border-border">
+          <div className="container mx-auto px-4">
+            <div className="max-w-xl mx-auto">
+              <div className="text-center mb-10">
+                <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
+                  Demo Talep Et
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  30 dakikada BütçeCRM'i birlikte keşfedelim.
+                </p>
               </div>
-              <h3 style={{ fontSize: 22, fontWeight: 700, color: "#111", marginBottom: 10 }}>Talebiniz Alındı!</h3>
-              <p style={{ fontSize: 15, color: "#666" }}>En kısa sürede sizinle iletişime geçeceğiz.</p>
-            </div>
-          ) : (
-            <div style={{ background: "#fff", borderRadius: 20, padding: 36, border: "0.5px solid #e0e0da" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                {[
-                  { label: "Ad Soyad", key: "name", placeholder: "Adınız", type: "text", full: false },
-                  { label: "Firma Adı", key: "company", placeholder: "Şirket adı", type: "text", full: false },
-                  { label: "E-posta", key: "email", placeholder: "mail@firma.com", type: "email", full: false },
-                  { label: "Telefon", key: "phone", placeholder: "+90 5xx xxx xx xx", type: "tel", full: false },
-                ].map((f) => (
-                  <div key={f.key}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: "#333", display: "block", marginBottom: 6 }}>{f.label}</label>
-                    <input
-                      type={f.type}
-                      placeholder={f.placeholder}
-                      value={formData[f.key as keyof typeof formData]}
-                      onChange={(e) => setFormData({ ...formData, [f.key]: e.target.value })}
-                      style={{
-                        width: "100%", background: "#f8f8f5", border: "0.5px solid #e0e0da",
-                        borderRadius: 10, padding: "10px 14px", fontSize: 14, color: "#111",
-                        outline: "none", boxSizing: "border-box",
-                      }}
+
+              {submitted ? (
+                <div className="p-8 rounded-2xl border border-primary/40 bg-primary/5 text-center">
+                  <div className="w-12 h-12 rounded-full bg-primary/15 text-primary flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold mb-2">
+                    Talebin alındı
+                  </h3>
+                  <p className="text-muted-foreground">
+                    24 saat içinde seninle iletişime geçeceğiz.
+                  </p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="p-6 md:p-8 rounded-2xl border border-border bg-card/50 space-y-4"
+                >
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Ad Soyad</Label>
+                    <Input
+                      id="name"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      required
                     />
                   </div>
-                ))}
-
-                {/* Selects */}
-                {[
-                  { label: "Çalışan Sayısı", key: "employees", options: ["1–5", "6–20", "21–50", "50+"] },
-                  { label: "Aylık Ciro (yaklaşık)", key: "revenue", options: ["₺0 – ₺100K", "₺100K – ₺500K", "₺500K – ₺2M", "₺2M+"] },
-                ].map((s) => (
-                  <div key={s.key}>
-                    <label style={{ fontSize: 13, fontWeight: 600, color: "#333", display: "block", marginBottom: 6 }}>{s.label}</label>
-                    <select
-                      value={formData[s.key as keyof typeof formData]}
-                      onChange={(e) => setFormData({ ...formData, [s.key]: e.target.value })}
-                      style={{
-                        width: "100%", background: "#f8f8f5", border: "0.5px solid #e0e0da",
-                        borderRadius: 10, padding: "10px 14px", fontSize: 14, color: "#111",
-                        outline: "none", boxSizing: "border-box",
-                      }}
-                    >
-                      <option value="">Seçin...</option>
-                      {s.options.map((o) => <option key={o}>{o}</option>)}
-                    </select>
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Firma Adı</Label>
+                    <Input
+                      id="company"
+                      value={form.company}
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    />
                   </div>
-                ))}
+                  <div className="space-y-2">
+                    <Label htmlFor="email">E-posta</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Telefon</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>İşletme türünüz nedir?</Label>
+                    <Select
+                      value={form.businessType}
+                      onValueChange={(v) => setForm({ ...form, businessType: v })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Seçiniz" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ecommerce">E-ticaret</SelectItem>
+                        <SelectItem value="retail">Perakende</SelectItem>
+                        <SelectItem value="service">Hizmet</SelectItem>
+                        <SelectItem value="other">Diğer</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-                {/* Full-width challenge */}
-                <div style={{ gridColumn: "1 / -1" }}>
-                  <label style={{ fontSize: 13, fontWeight: 600, color: "#333", display: "block", marginBottom: 6 }}>
-                    Şu an en büyük finansal zorluk nedir?
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Örn: Ay sonu ne kaldığını bilmiyorum, giderler kontrolden çıkıyor..."
-                    value={formData.challenge}
-                    onChange={(e) => setFormData({ ...formData, challenge: e.target.value })}
-                    style={{
-                      width: "100%", background: "#f8f8f5", border: "0.5px solid #e0e0da",
-                      borderRadius: 10, padding: "10px 14px", fontSize: 14, color: "#111",
-                      outline: "none", boxSizing: "border-box",
-                    }}
-                  />
-                </div>
+                  <Button type="submit" size="lg" className="w-full gap-2 mt-2">
+                    Görüşme Talep Et <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </form>
+              )}
 
-                <div style={{ gridColumn: "1 / -1", marginTop: 4 }}>
-                  <button
-                    onClick={handleSubmit}
-                    style={{
-                      background: "#1d9e75", color: "#fff", fontSize: 15, fontWeight: 600,
-                      padding: "14px 28px", borderRadius: 10, border: "none", cursor: "pointer",
-                      width: "100%",
-                    }}
+              <div className="mt-6">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full gap-2 border-primary/40 text-primary hover:bg-primary/10 hover:text-primary"
+                  asChild
+                >
+                  <a
+                    href="https://wa.me/000000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    Görüşme Talep Et →
-                  </button>
-                </div>
+                    <MessageCircle className="w-5 h-5" />
+                    Hızlı iletişim için WhatsApp'tan yazın
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </Button>
               </div>
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div style={{ margin: "0 48px 48px" }}>
-        <div style={{ background: "#111", borderRadius: 20, padding: "48px 40px", textAlign: "center" }}>
-          <div style={{
-            width: 52, height: 52, background: "#1d4030", borderRadius: 14,
-            display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px",
-          }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#1d9e75" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </div>
-          <h2 style={{ color: "#fff", fontSize: 28, fontWeight: 800, marginBottom: 12 }}>
-            Finansal Kör Noktan Olmasın
-          </h2>
-          <p style={{ color: "#aaa", fontSize: 15, marginBottom: 28, lineHeight: 1.6 }}>
-            Her ay aynı soruları soruyorsanız, sistem kurma vakti gelmiş demektir.
-          </p>
-          <button
-            onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}
-            style={{
-              background: "#1d9e75", color: "#fff", fontSize: 15, fontWeight: 600,
-              padding: "14px 32px", borderRadius: 12, border: "none", cursor: "pointer",
-            }}
-          >
-            Projeyi Birlikte Yürütelim →
-          </button>
-        </div>
-      </div>
+        </section>
+      </main>
 
+      <Footer />
     </div>
   );
 }
