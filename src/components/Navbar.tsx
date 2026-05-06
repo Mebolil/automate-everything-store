@@ -1,9 +1,27 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap, LogOut, User, Shield } from "lucide-react";
+import { Menu, X, Zap, LogOut, User, Shield, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+const products = [
+  { label: "BütçeCRM", href: "/butceleme" },
+  { label: "Web Sitesi", href: "#services" },
+  { label: "Otomasyon", href: "#services" },
+];
+
+const navLinks = [
+  { label: "Nasıl Çalışır", href: "#how-it-works" },
+  { label: "Fiyatlandırma", href: "#pricing" },
+  { label: "Hakkımızda", href: "#about" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,13 +35,6 @@ const Navbar = () => {
     });
   }, [user]);
 
-  const links = [
-    { label: "Hizmetler", href: "#services" },
-    { label: "Nasıl Çalışır", href: "#how-it-works" },
-    { label: "Fiyatlandırma", href: "#pricing" },
-    { label: "SSS", href: "#faq" },
-  ];
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -35,7 +46,20 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors outline-none">
+              Ürünler
+              <ChevronDown className="w-3.5 h-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[180px]">
+              {products.map((p) => (
+                <DropdownMenuItem key={p.label} asChild>
+                  <a href={p.href}>{p.label}</a>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {navLinks.map((link) => (
             <a key={link.label} href={link.href} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               {link.label}
             </a>
@@ -69,8 +93,8 @@ const Navbar = () => {
               <Button variant="ghost" size="sm" asChild>
                 <a href="/auth">Giriş Yap</a>
               </Button>
-              <Button size="sm" asChild>
-                <a href="/auth">Ücretsiz Başla</a>
+              <Button size="sm" asChild className="bg-green-600 hover:bg-green-700 text-white">
+                <a href="#contact">Ücretsiz Görüşme Al</a>
               </Button>
             </>
           )}
@@ -90,7 +114,15 @@ const Navbar = () => {
             className="md:hidden overflow-hidden bg-background border-b border-border"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
-              {links.map((link) => (
+              <div className="flex flex-col gap-2">
+                <span className="text-xs uppercase tracking-wider text-muted-foreground">Ürünler</span>
+                {products.map((p) => (
+                  <a key={p.label} href={p.href} className="text-sm font-medium text-muted-foreground hover:text-foreground py-1 pl-3" onClick={() => setIsOpen(false)}>
+                    {p.label}
+                  </a>
+                ))}
+              </div>
+              {navLinks.map((link) => (
                 <a key={link.label} href={link.href} className="text-sm font-medium text-muted-foreground hover:text-foreground py-2" onClick={() => setIsOpen(false)}>
                   {link.label}
                 </a>
@@ -122,8 +154,8 @@ const Navbar = () => {
                     <Button variant="ghost" size="sm" asChild>
                       <a href="/auth">Giriş Yap</a>
                     </Button>
-                    <Button size="sm" asChild>
-                      <a href="/auth">Ücretsiz Başla</a>
+                    <Button size="sm" asChild className="bg-green-600 hover:bg-green-700 text-white">
+                      <a href="#contact">Ücretsiz Görüşme Al</a>
                     </Button>
                   </>
                 )}
