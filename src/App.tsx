@@ -32,6 +32,7 @@ const App = () => (
             <Route path="/service/:id" element={<ServiceDetail />} />
             <Route path="/butceleme" element={<BudgetService />} />
             <Route path="/web-sitesi" element={<WebSiteService />} />
+            <Route path="/otomasyon" element={<AutomationService />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
               <Route path="services" element={<AdminServices />} />
