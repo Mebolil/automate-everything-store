@@ -94,7 +94,7 @@ const Navbar = () => {
                 <a href="/auth">Giriş Yap</a>
               </Button>
               <Button size="sm" asChild className="bg-green-600 hover:bg-green-700 text-white">
-                <a href="#contact">Ücretsiz Görüşme Al</a>
+                <a href="/iletisim">Ücretsiz Görüşme Al</a>
               </Button>
             </>
           )}
@@ -155,7 +155,7 @@ const Navbar = () => {
                       <a href="/auth">Giriş Yap</a>
                     </Button>
                     <Button size="sm" asChild className="bg-green-600 hover:bg-green-700 text-white">
-                      <a href="#contact">Ücretsiz Görüşme Al</a>
+                      <a href="/iletisim">Ücretsiz Görüşme Al</a>
                     </Button>
                   </>
                 )}
