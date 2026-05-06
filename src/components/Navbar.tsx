@@ -13,8 +13,8 @@ import {
 
 const products = [
   { label: "BütçeCRM", href: "/butceleme" },
-  { label: "Web Sitesi", href: "/web-sitesi" },
-  { label: "Otomasyon", href: "/otomasyon" },
+  { label: "Özel Tasarım Site", href: "/web-sitesi" },
+  { label: "Otomasyon Sistemleri", href: "/otomasyon" },
 ];
 
 const navLinks = [

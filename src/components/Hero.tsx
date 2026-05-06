@@ -13,14 +13,14 @@ const products = [
   },
   {
     icon: Monitor,
-    title: "Anahtar Teslim Web Sitesi",
+    title: "Özel Tasarım Site",
     description:
       "3 iş gününde marka DNA'nıza özel, modern ve dönüşüm odaklı web siteniz hazır.",
     href: "/web-sitesi",
   },
   {
     icon: Workflow,
-    title: "İş Süreci Otomasyonu",
+    title: "Otomasyon Sistemleri",
     description:
       "Tekrarlayan işleri sistemlere devredin. Zamanınızı sadece büyümeye ayırın.",
     href: "/otomasyon",
