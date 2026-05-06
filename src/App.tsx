@@ -15,6 +15,7 @@ import BudgetService from "./pages/BudgetService";
 import WebSiteService from "./pages/WebSiteService";
 import AutomationService from "./pages/AutomationService";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
