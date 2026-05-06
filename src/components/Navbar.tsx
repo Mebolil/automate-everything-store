@@ -13,14 +13,14 @@ import {
 
 const products = [
   { label: "BütçeCRM", href: "/butceleme" },
-  { label: "Web Sitesi", href: "#services" },
-  { label: "Otomasyon", href: "#services" },
+  { label: "Web Sitesi", href: "/web-sitesi" },
+  { label: "Otomasyon", href: "/otomasyon" },
 ];
 
 const navLinks = [
-  { label: "Nasıl Çalışır", href: "#how-it-works" },
-  { label: "Fiyatlandırma", href: "#pricing" },
-  { label: "Hakkımızda", href: "#about" },
+  { label: "Nasıl Çalışır", href: "/#how-it-works" },
+  { label: "Fiyatlandırma", href: "/#pricing" },
+  { label: "Hakkımızda", href: "/hakkimizda" },
 ];
 
 const Navbar = () => {
