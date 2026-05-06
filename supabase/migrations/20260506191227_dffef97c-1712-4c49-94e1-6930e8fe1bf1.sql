@@ -1,0 +1,1 @@
+DELETE FROM public.services WHERE id IN ('f29388b7-dfc6-4ef4-9cb4-e0b04c2dec03','7757fab1-15f3-4c93-a6aa-d78a27de146c','8cb4d3de-eb20-4254-ae6c-f7db412b0012');
