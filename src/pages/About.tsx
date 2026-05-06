@@ -172,9 +172,11 @@ export default function About() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-base px-8 gap-2">
-                Görüşme Al
-                <ArrowRight className="w-4 h-4" />
+              <Button size="lg" variant="outline" className="text-base px-8 gap-2" asChild>
+                <Link to="/iletisim">
+                  Görüşme Al
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </Button>
             </div>
           </div>
