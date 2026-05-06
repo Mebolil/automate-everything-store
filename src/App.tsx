@@ -15,6 +15,7 @@ import BudgetService from "./pages/BudgetService";
 import WebSiteService from "./pages/WebSiteService";
 import AutomationService from "./pages/AutomationService";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/web-sitesi" element={<WebSiteService />} />
             <Route path="/otomasyon" element={<AutomationService />} />
             <Route path="/hakkimizda" element={<About />} />
+            <Route path="/iletisim" element={<Contact />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
               <Route path="services" element={<AdminServices />} />
