@@ -10,7 +10,7 @@ const Footer = () => {
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <Zap className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="font-display text-lg font-bold">Otomasyon Çözüm</span>
+              <span className="font-display text-lg font-bold">Hisu Solutions</span>
             </a>
             <p className="text-sm text-muted-foreground leading-relaxed">
               İş süreçlerinizi otomatikleştiren hazır otomasyon çözümleri marketi.
@@ -50,7 +50,7 @@ const Footer = () => {
 
         <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2026 Otomasyon Çözüm. Tüm hakları saklıdır.
+            © 2026 Hisu Solutions. Tüm hakları saklıdır.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <a href="#" className="hover:text-foreground transition-colors">Twitter</a>
